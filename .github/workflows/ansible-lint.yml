@@ -23,7 +23,9 @@ jobs:
         # targets: |
         #   playbook_1.yml
         #   playbook_2.yml
-        targets: "./"
+        targets: |
+           playbooks/dataiku.yml
+           playbooks/rstudio.yml
         # [optional]
         # Arguments to be passed to the ansible-lint
 
