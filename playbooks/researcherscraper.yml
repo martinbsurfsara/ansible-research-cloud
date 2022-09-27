@@ -1,0 +1,52 @@
+- hosts: 127.0.0.1
+  connection: local
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: install python3
+      apt:
+        name: python3
+        state: present
+
+    - name: install python3-pip
+      apt:
+        name: python3-pip
+        state: present
+
+    - name: install virtualenv
+      pip:
+        name: virtualenv
+        state: present
+
+    - name: install git
+      apt:
+        name: git
+        state: present
+    
+    - name: clone the repo
+      git:
+        repo: https://github.com/uashogeschoolutrecht/ResearcherScraper
+
+    - name: change directory
+      command: cd ResearcherScraper
+
+    - name: create virtual environment
+      command: python3 -m venv venv
+
+    - name: activate virtual environment
+      command: source venv/bin/activate
+
+    - name: install packages
+      command: pip install -r requirements.txt
+
+    - name: execute script
+      command: python scrape.py
+
+
+
+
+
+
+
+
