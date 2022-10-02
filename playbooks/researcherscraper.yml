@@ -4,6 +4,15 @@
   gather_facts: no
 
   tasks:
+    - name: Create a directory if it does not exist
+      file:
+        path: /HU/Scripts
+        state: directory
+        mode: '0755'
+    
+    - name: change directory
+      command: cd HU/Scripts
+
     - name: install python3
       apt:
         name: python3
@@ -27,6 +36,7 @@
     - name: clone the repo
       git:
         repo: https://github.com/uashogeschoolutrecht/ResearcherScraper
+        dest: /HU/Scripts
 
     - name: change directory
       command: cd ResearcherScraper
